@@ -1,0 +1,12 @@
+# Configura en WildFly el driver MySQL y el DataSource JNDI usado por persistence.xml.
+#
+# Uso (con WildFly iniciado y el driver mysql-connector-j-8.0.33.jar descargado):
+#   %WILDFLY_HOME%\bin\jboss-cli.bat --connect --file=scripts\configurar-wildfly.cli
+#
+# Cambia la ruta del JAR y la contraseña antes de ejecutarlo. No subas la contraseña real al repositorio.
+
+module add --name=com.mysql --resources=C:/ruta/a/mysql-connector-j-8.0.33.jar --dependencies=javax.api,javax.transaction.api
+
+/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql,driver-class-name=com.mysql.cj.jdbc.Driver)
+
+data-source add --name=AeropuertoDS --jndi-name=java:/jdbc/AeropuertoDS --driver-name=mysql --connection-url=jdbc:mysql://localhost:3306/aeropuerto --user-name=root --password=CAMBIAR_ESTA_CLAVE --enabled=true --max-pool-size=20 --min-pool-size=2
