@@ -6,6 +6,14 @@
 
     <display-name>Sistema de Aeropuerto 2</display-name>
 
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <url-pattern>*.jspf</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
+
     <!-- Servlets, filtros y EJB se registran con anotaciones; aquí solo la configuración global -->
     <session-config>
         <session-timeout>30</session-timeout>
